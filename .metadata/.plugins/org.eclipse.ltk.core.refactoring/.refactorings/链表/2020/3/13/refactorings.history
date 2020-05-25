@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Copy package &apos;链表&apos; to &apos;LeetCode/src&apos;&#x0D;&#x0A;- Original project: &apos;链表&apos;&#x0D;&#x0A;- Destination element: &apos;LeetCode/src&apos;&#x0D;&#x0A;- Original element: &apos;链表/src/链表&apos;" description="Copy package" destination="=LeetCode/src" element1="/src&lt;链表" flags="589830" fragments="1" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyPackages" stamp="1584968972190" version="1.0"/>
-</session>

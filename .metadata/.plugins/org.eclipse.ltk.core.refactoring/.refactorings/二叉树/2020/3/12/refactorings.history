@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Copy package &apos;二叉树&apos; to &apos;剑指offer/src&apos;&#x0D;&#x0A;- Original project: &apos;二叉树&apos;&#x0D;&#x0A;- Destination element: &apos;剑指offer/src&apos;&#x0D;&#x0A;- Original element: &apos;二叉树/src/二叉树&apos;" description="Copy package" destination="=剑指offer/src" element1="/src&lt;二叉树" flags="589830" fragments="1" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyPackages" stamp="1584348122637" version="1.0"/>
-</session>
