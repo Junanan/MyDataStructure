@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;剑指offer.T18&apos; to &apos;T18未解决&apos;&#x0D;&#x0A;- Original project: &apos;剑指offer&apos;&#x0D;&#x0A;- Original element: &apos;剑指offer.T18&apos;&#x0D;&#x0A;- Renamed element: &apos;剑指offer.T18未解决&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;T18&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;剑指offer{T18.java[T18" matchStrategy="1" name="T18未解决" qualified="false" references="true" similarDeclarations="false" stamp="1583548825863" textual="false" version="1.0"/>
+</session>
