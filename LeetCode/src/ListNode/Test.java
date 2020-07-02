@@ -1,5 +1,7 @@
 package ListNode;
 
+import List.L61Ðý×ªÁ´±í.ListNode;
+
 public class Test {
 	public static void main(String[] args) {
 		MyListNode b = new MyListNode();
@@ -13,6 +15,14 @@ public class Test {
 		System.out.println("===");
 		b.show();
 	}
-	
+//	ListNode head = new ListNode(1);
+//	ListNode n2 = new ListNode(2);
+//	ListNode n3 = new ListNode(3);
+//	ListNode n4 = new ListNode(4);
+//	ListNode n5 = new ListNode(5);
+//	head.next = n2;
+//	n2.next =n3 ;
+//	n3.next =n4;
+//	n4.next =n5;
     
 }

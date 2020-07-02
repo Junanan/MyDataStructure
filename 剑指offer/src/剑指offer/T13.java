@@ -34,7 +34,6 @@ public class T13 {
 		if (n == 3)
 			return 2;
 		int[] p = new int[n + 1];
-
 		p[0] = 0;
 		p[1] = 1;
 		p[2] = 2;
