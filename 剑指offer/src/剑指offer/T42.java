@@ -18,7 +18,7 @@ public class T42 {
 			strs[i] = String.valueOf(nums[i]);
 		}
 		Arrays.sort(strs, (x, y) -> (x + y).compareTo(y + x));
-		StringBuilder res = new StringBuilder();
+		StringBuilder res = new StringBuilder();	
 		for (String i : strs) {
 			res.append(i);
 		}
@@ -60,11 +60,24 @@ public class T42 {
 		quicksort(strs, low, i - 1);
 		quicksort(strs, i + 1, hight);
 	}
-
+		int count =0;
+	 public int translateNum(int num) {
+	        String a = String.valueOf(num);
+	        backtracking(a,0);
+	        return count;
+	    }
+	private void backtracking(String a,int i) {
+		if(i>=a.length()) return ;
+		a.substring(i, i+1);
+		a.substring(i, i+2);
+		
+	}
 	public static void main(String[] args) {
 		int[] a = new int[] { 3, 30, 34, 5, 9 };
 		String[] b = new String[] { "sd", "123" };
-		System.out.println(b.toString());
-		System.out.println(minNumberr(a));
+		String a2 = String.valueOf(123);
+		System.out.println(a2.substring(2, 3));
+		int a3 = Integer.valueOf(a2);
+		System.out.println(a3);
 	}
 }

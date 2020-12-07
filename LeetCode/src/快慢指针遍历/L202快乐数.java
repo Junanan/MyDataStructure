@@ -39,7 +39,7 @@ public class L202快乐数 {
 		while(n!=0) {
 			temp = n%10;
 			sum += temp*temp;
-			n /= 1;
+			n /= 10;
 		}
 	return sum;
 }

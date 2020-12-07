@@ -39,5 +39,6 @@ public class T15 {
 	public static void main(String[] args) {
 //		System.out.println(myPow(2, 5));
 		System.out.println(Power(2, 5));
+		int a= (int) Math.pow(1, 1);
 	}
 }

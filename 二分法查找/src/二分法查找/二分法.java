@@ -20,9 +20,11 @@ public class 二分法 {
 		public static int myBinarySearch(int[] arr, int value) {
 			int low = 0;/////指针1
 			int high = arr.length - 1;//////指针2
-			while (low <= high) {
+			while (low <= high) {  // 有= 终止条件为  left =right+1 区间为（right+1，right）区间为空 如果没有= 则是 left =right（right，right） 是非空区间
 				int mid = (low + high) / 2;
 				if (value == arr[mid]) {
+					System.out.println(low);
+					System.out.println(high);
 					return mid;
 				}
 				if (value > arr[mid]) {

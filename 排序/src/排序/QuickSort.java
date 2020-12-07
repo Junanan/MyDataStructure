@@ -10,19 +10,18 @@ public class QuickSort {
 	}
 
 	private static void quicksort(int[] arr, int start, int end) {
-		if(start>=end) return ;
 			//把数组中的第0个数字作为标准数
-			int stard = arr[start];
+			int partition = arr[start];
 			//记录需要排序的下标
 			int low = start;
 			int high = end ;
 			//循环找比标准数大的数和比标准数小的数
 			while(low<high) {
 				//哨兵的移动不能改变顺序  
-				while(low<high&&stard<=arr[high]) {
+				while(low<high&&partition<=arr[high]) {
 					high--;
 				}
-				while(low<high&&arr[low]<=stard) {
+				while(low<high&&arr[low]<=partition) {
 					low++;
 				}
 				
@@ -35,11 +34,11 @@ public class QuickSort {
 			    // 将基准数放到中间的位置（基准数归位）
 			    arr[start] = arr[low];
 			  //把标准数赋给低所在的位置的元素
-			     arr[low] = stard;
+			     arr[low] = partition;
 			//处理所有的小的数字
-			quicksort(arr, start, low-1);
+			if(start<low-1) quicksort(arr, start, low-1);
 			//处理所有的大数字
-			quicksort(arr, low+1, end);
+			if(low+1<end)quicksort(arr, low+1, end);
 		
 		
 		

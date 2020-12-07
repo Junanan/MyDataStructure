@@ -6,6 +6,7 @@ package 剑指offer;
 //输出: 12
 //解释: 1, 2, 3, 4, 5, 6, 8, 9, 10, 12 是前 10 个丑数。
 public class T46 {
+//	相当于合并三个有序数组 所以要维护三个指针
 	public static int nthUglyNumber(int n) {
 		int[] dp = new int[n];
 		int a=0,b=0,c=0;
@@ -21,9 +22,7 @@ public class T46 {
 	}
 	//  丑数 = 较小丑数*某因子（2,3,5）
 	public static void main(String[] args) {
-		int [] a =new int[] {1,2,3,4,5};
-		for(int i=0;i<a.length;++i) {
-			System.out.println(a[i]);
+	
 		}
 	}
-}
+

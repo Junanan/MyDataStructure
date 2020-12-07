@@ -30,8 +30,8 @@ public class L226·­×ª¶þ²æÊ÷ {
 		TreeNode tmp = root.right;
 		root.right = root.left;
 		root.left = tmp;
-		invertTree(root.left);
-		invertTree(root.right);
+		root.left =invertTree(root.left);
+		root.right =invertTree(root.right);
 		return root;
     }
 

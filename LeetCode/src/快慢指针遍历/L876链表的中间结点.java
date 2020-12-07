@@ -27,7 +27,7 @@ public class L876链表的中间结点 {
 		 if(head == null)  return null;
 		 ListNode fast = head;
 		 ListNode slow = head;
-		 while(fast.next!=null&&fast.next.next!=null) {
+		 while(fast!=null&&fast.next!=null) {
 			 fast = fast.next.next;
 			 slow = slow.next;
 		 }

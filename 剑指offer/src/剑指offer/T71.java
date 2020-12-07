@@ -16,7 +16,11 @@ public class T71 {
 			val = x;
 		}
 	}
-
+//	这个函数的功能有三个：给定两个节点 pp 和 qq
+//
+//	如果 p 和 q 都存在，则返回它们的公共祖先；
+//	如果只存在一个，则返回存在的一个；
+//	如果 p 和 q 都不存在，则返回NULL
 	public static TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
 		if (root == null || root == q || root == p)
 			return root;

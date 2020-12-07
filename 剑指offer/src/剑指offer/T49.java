@@ -9,29 +9,36 @@ package 剑指offer;
 //输出: 0
 public class T49 {
 	public static int search(int[] nums, int target) {
-		int i = 0 ;
-		int j = nums.length-1;
-		//从右向左找
-		while(i<=j) {
-			int m = (i+j)/2;
-			if (target>nums[m]) i = m+1;
-			else if (target == nums[m]) j = m -1; //因为是找左边界 所以缩小右边范围
-			else j = m -1;
-		}
-		int left = j;
-		i =0;  j = nums.length-1; 
-		while(i<=j) {
-			int m = (i+j)/2;
-			if (target>nums[m]) i = m+1;
-			else if (target == nums[m]) i = m + 1;
-			else j = m -1;
-		}
-		int right = i;
-		return right - left -1;
+		 if(nums.length==0) return 0;
+		  // 搜索右边界 right
+        int i = 0, j = nums.length - 1;
+        while(i <= j) {
+            int m = (i + j) / 2;
+            if(nums[m] <= target) i = m + 1;
+            else j = m - 1;
+        }
+        int right = i;
+        // 若数组中无 target ，则提前返回
+        if(j >= 0 && nums[j] != target) return 0;
+        // 搜索左边界 right
+        i = 0; j = nums.length - 1;
+        while(i <= j) {
+            int m = (i + j) / 2;
+            if(nums[m] < target) i = m + 1;
+            else j = m - 1;
+        }
+        int left = j;
+        return right - left - 1;
     }
 	public static void main(String[] args) {
-		int[] nums = new int[] {5,7,7,8,8,10};
-		System.out.println(search(nums,6));
+		int k = 23+(82-23)>>1;
+		int j = (82+23)>>1;
+		int a = (82+23)/2;
+		int b = 23+(82-23)/2;
+		System.out.println(k);
+		System.out.println(j);
+		System.out.println(a);
+		System.out.println(b);
 	}
 
 }

@@ -29,7 +29,6 @@ public class T64 {
 		}
 		return res;
     }
-	// 最后一个数的下标为0；反推回去
 	public static int lastRemainingg(int n, int m) {
 		//超时
 		List<Integer> res = new ArrayList<>();

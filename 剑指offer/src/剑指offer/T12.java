@@ -1,6 +1,9 @@
 package 剑指offer;
 
 import java.awt.datatransfer.SystemFlavorMap;
+import java.util.HashSet;
+import java.util.Set;
+
 import org.omg.CORBA.TIMEOUT;
 
 //给你一根长度为 n 的绳子，请把绳子剪成整数长度的 m 段（m、n都是整数，n>1并且m>1），每段绳子的长度记为 k[0],k[1]...k[m] 。
@@ -14,6 +17,17 @@ import org.omg.CORBA.TIMEOUT;
 //输出: 36
 //解释: 10 = 3 + 3 + 4, 3 × 3 × 4 = 36
 public class T12 {
+	 public int cuttingRope(int n) {
+	        int[] dp = new int[n+1];
+	        dp[1] = 1;
+	        dp[2] = 1;
+	        for (int i = 3; i <= n; i++) {
+	            for (int j =1; j <=i; j++) {
+	                dp[i] = Math.max(dp[i],Math.max(j,dp[j])*Math.max(dp[i-j],i-j));
+	            }
+	        }
+	        return dp[n];
+	    }
 	// 动态规划，从上往下的分解问题，得到若干个子问题，再求出这些这问题的最优解，在将他们储存起来
 	// 第一个for循环表示从底向上 第二个for求出子问题的最优解，product储存最优解
 	public static int cutRope(int target) {

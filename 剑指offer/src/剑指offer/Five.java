@@ -1,7 +1,14 @@
 package 剑指offer;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
+import java.util.PriorityQueue;
+import java.util.Set;
 
 public class Five {
 //	输入某二叉树的前序遍历和中序遍历的结果，请重建该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。
@@ -26,46 +33,70 @@ public class Five {
 	}
 
 	public class Solution {
-
-		// 使用全局变量是为了让递归方法少传一些参数，不一定非要这么做
-
-		private Map<Integer, Integer> reverses;
-		private int[] preorder;
-
 		public TreeNode buildTree(int[] preorder, int[] inorder) {
-			int preLen = preorder.length;
-			int inLen = inorder.length;
-			// 以空间换时间，否则，找根结点在中序遍历中的位置需要遍历
-			reverses = new HashMap<>(inLen);
-			for (int i = 0; i < inLen; i++) {
-				reverses.put(inorder[i], i);
-			}
-			return buildTree(0, preLen - 1, 0, inLen - 1);
+		    //把前序遍历的值和中序遍历的值放到list中
+		    List<Integer> preorderList = new ArrayList<>();
+		    List<Integer> inorderList = new ArrayList<>();
+		    for (int i = 0; i < preorder.length; i++) {
+		        preorderList.add(preorder[i]);
+		        inorderList.add(inorder[i]);
+		    }
+		    return helper(preorderList, inorderList);
 		}
 
-		/**
-		 * 根据前序遍历数组的 [preL, preR] 和 中序遍历数组的 [inL, inR] 重新组建二叉树
-		 *
-		 * @param preL 前序遍历数组的区间左端点
-		 * @param preR 前序遍历数组的区间右端点
-		 * @param inL  中序遍历数组的区间左端点
-		 * @param inR  中序遍历数组的区间右端点
-		 * @return 构建的新二叉树的根结点
-		 */
-		private TreeNode buildTree(int preL, int preR, int inL, int inR) {
-			if (preL > preR || inL > inR) {
-				return null;
-			}
-			// 构建的新二叉树的根结点一定是前序遍历数组的第 1 个元素
-			int pivot = preorder[preL];
-			TreeNode root = new TreeNode(pivot);
-			int pivotIndex = reverses.get(pivot);////使得根节点 这一数值的位置是已知的
-			////为了提升搜索效率，本题解使用哈希表 dic 预存储中序遍历的值与索引的映射关系，每次搜索的时间复杂度为 O(1)O(1)。
-			// 这一步得画草稿，计算边界的取值，必要时需要解方程，并不难
-			root.left = buildTree(preL + 1, preL + (pivotIndex - inL), inL, pivotIndex - 1);////递归处理左子树区间
-			root.right = buildTree(preL + (pivotIndex - inL) + 1, preR, pivotIndex + 1, inR);/////递归处理右子树区间
-			return root;
+		private TreeNode helper(List<Integer> preorderList, List<Integer> inorderList) {
+		    if (inorderList.size() == 0)
+		        return null;
+		    //前序遍历的第一个值就是根节点
+		    int rootVal = preorderList.remove(0);
+		    //创建跟结点
+		    TreeNode root = new TreeNode(rootVal);
+		    //查看根节点在中序遍历中的位置，然后再把中序遍历的数组劈两半，前面部分是
+		    //根节点左子树的所有值，后面部分是根节点右子树的所有值
+		    int mid = inorderList.indexOf(rootVal);
+		    //[0，mid)是左子树的所有值，inorderList.subList(0, mid)表示截取inorderList
+		    //的值，截取的范围是[0，mid)，包含0不包含mid。
+		    root.left = helper(preorderList, inorderList.subList(0, mid));
+		    //[mid+1，inorderList.size())是右子树的所有值，
+		    // inorderList.subList(mid + 1, inorderList.size())表示截取inorderList
+		    //的值，截取的范围是[mid+1，inorderList.size())，包含mid+1不包含inorderList.size()。
+		    root.right = helper(preorderList, inorderList.subList(mid + 1, inorderList.size()));
+		    return root;
 		}
+	
 	}
-
+    Set<String> res ;
+   public String[] permutation(String s) {
+       res = new HashSet<>();
+       boolean[] isValid = new boolean[s.length()];
+       StringBuilder stringbuilder = new StringBuilder();
+       BackTracking(s,stringbuilder,isValid);
+       return res.toArray(new String[res.size()]);
+   }
+   private void BackTracking(String s,StringBuilder stringbuilder, boolean[] isValid ){
+       if(stringbuilder.length()==s.length()) {
+           res.add(stringbuilder.toString());
+           return ;
+       }
+       for(int i=0;i<s.length();i++){
+           if(isValid[i]) continue;
+           isValid[i] = true;
+           stringbuilder.append(s.charAt(i));
+           BackTracking(s,stringbuilder,isValid);
+           isValid[i] = false;
+           stringbuilder.deleteCharAt(stringbuilder.length()-1);
+       }
+   }
+	public static void main(String[] args) throws ArrayIndexOutOfBoundsException {
+		int[] a = new int[2] ;
+		int b =0;
+		   PriorityQueue<Integer> queue = new PriorityQueue<>((a1,a2)->a2-a1);
+		   queue.add(1);
+		   queue.add(2);
+		   for(Integer i :queue) {
+			   a[b++] = i;
+		   }
+		   System.out.println(Arrays.toString(a));
+	}
 }
+

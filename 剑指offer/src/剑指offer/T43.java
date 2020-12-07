@@ -7,17 +7,23 @@ package 剑指offer;
 //输出: 5
 //解释: 12258有5种不同的翻译，分别是"bccfi", "bwfi", "bczi", "mcfi"和"mzi"
 public class T43 {
+	static int count = 0;
+
 	public static int translateNum(int num) {
-		String s = String.valueOf(num);
-		int a = 1;
-		int b = 1;
-		for (int i = 2; i <= s.length(); i++) {
-			String tem = s.substring(i - 2, i);
-			int c = tem.compareTo("0") >= 0 && tem.compareTo("25") <= 0 ? a + b : a;
-			b = a;
-			a = c;
+		String a = String.valueOf(num);
+		backtracking(a, 0);
+		return count;
+	}
+
+	private static void backtracking(String a, int i) {
+		if (i >= a.length()) {
+			count++;
+			return;
 		}
-		return a;
+		backtracking(a, i+1);
+		if(i<a.length()-1&&a.substring(i, i+1)!="0"&&(Integer.valueOf(a.substring(i, i+2))>=0&&(Integer.valueOf(a.substring(i, i+2))<=25))){
+			backtracking(a, i+2);
+		}
 	}
 
 	public static void main(String[] args) {
