@@ -1,3 +1,3 @@
 # MyDataStructure
 
-2020/5/25 first commit
+刷题记录
