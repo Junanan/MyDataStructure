@@ -35,7 +35,7 @@ public class T33 {
 		temp.add(root.value);
 		sum = sum - root.value;
 		if (sum == 0 && root.leftNode == null && root.rightNode == null) {
-			res.add(new LinkedList<Integer>(temp));//浅拷贝
+			res.add(new LinkedList<Integer>(temp));//深拷贝 res.add(temp) 会共享内存 内容会跟着变
 		}
 		recus(root.leftNode, sum);
 		recus(root.rightNode, sum);

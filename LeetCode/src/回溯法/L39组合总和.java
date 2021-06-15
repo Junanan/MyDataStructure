@@ -29,42 +29,43 @@ import java.util.List;
 //  [3,5]
 //]
 public class L39组合总和 {
-	static List<List<Integer>> res;
+    static List<List<Integer>> res;
 
-	public static List<List<Integer>> combinationSum(int[] candidates, int target) {
-		res = new ArrayList<>();
-		List<Integer> list = new ArrayList<>();
-		backtrack(candidates, target, list, 0);
-		return res;
-	}
+    public static List<List<Integer>> combinationSum(int[] candidates, int target) {
+        res = new ArrayList<>();
+        List<Integer> list = new ArrayList<>();
+        backtrack(candidates, target, list, 0);
+        return res;
+    }
 
-	private static void backtrack(int[] candidates, int target, List<Integer> list, int j) {
-		if (target == sumList(list)) {
-			res.add(new ArrayList<>(list));
-			return;
-		}
-		for (int i = j; i < candidates.length; i++) {
-			if (sumList(list) > target)
-				break;
-			list.add(candidates[i]);
-			backtrack(candidates, target, list, i);
-			list.remove(list.size() - 1);
-		}
-	}
+    private static void backtrack(int[] candidates, int target, List<Integer> list, int j) {
+        if (target == sumList(list)) {
+            res.add(new ArrayList<>(list));
+            return;
+        }
+        for (int i = j; i < candidates.length; i++) {
+            if (sumList(list) > target) {
+                break;
+            }
+            list.add(candidates[i]);
+            backtrack(candidates, target, list, i);
+            list.remove(list.size() - 1);
+        }
+    }
 
-	private static int sumList(List<Integer> list) {
-		if (list.size() == 0)
-			return 0;
-		int sum = 0;
-		for (int i = 0; i < list.size(); i++) {
-			sum += list.get(i);
-		}
-		return sum;
-	}
+    private static int sumList(List<Integer> list) {
+        if (list.size() == 0)
+            return 0;
+        int sum = 0;
+        for (int i = 0; i < list.size(); i++) {
+            sum += list.get(i);
+        }
+        return sum;
+    }
 
-	public static void main(String[] args) {
-		int[] candidates = new int[] { 2, 3, 5 };
-		int target = 8;
-		System.out.println(combinationSum(candidates, target));
-	}
+    public static void main(String[] args) {
+        int[] candidates = new int[]{2, 3, 5};
+        int target = 8;
+        System.out.println(combinationSum(candidates, target));
+    }
 }

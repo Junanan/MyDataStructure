@@ -6,4 +6,5 @@ public class JVMtest {
             System.out.println("The Parent of ClassLodarDemo's ClassLoader is " + JVMtest.class.getClassLoader().getParent());
             System.out.println("The GrandParent of ClassLodarDemo's ClassLoader is " + JVMtest.class.getClassLoader().getParent().getParent());
         }
+
 }

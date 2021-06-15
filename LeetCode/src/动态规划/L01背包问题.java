@@ -26,9 +26,12 @@ public class L01背包问题 {
 					dp[i][j] = dp[i - 1][j];
 				} else {
 					dp[i][j] = Math.max(dp[i - 1][j], dp[i - 1][j - wt[i-1]] + val[i-1]);
+// 完全背包：	dp[i][j] = Math.max(dp[i - 1][j], dp[i] [j - wt[i-1]] + val[i-1]);
+//两者区别在于物品能不能重复使用
 				}
 			}
 		}
 		return dp[n][w];
 	}
+	//完全背包 L322零钱
 }

@@ -47,6 +47,5 @@ public class L130被围绕的区域 {
 		 dfs(board, i, j + 1);
 		 dfs(board, i - 1, j);
 		 dfs(board, i, j -1);
-		
 	}
 }
