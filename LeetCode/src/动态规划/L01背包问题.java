@@ -18,8 +18,6 @@ public class L01背包问题 {
 		for (int i = 0; i <= w; i++) {
 			dp[0][i] = 0;
 		}
-		dp[0][0] = 0;
-		
 		for (int i = 1; i <= n; i++) {
 			for (int j = 1; j <= w; j++) {
 				if (j - wt[i-1] < 0) {// 超重 只能选择不装

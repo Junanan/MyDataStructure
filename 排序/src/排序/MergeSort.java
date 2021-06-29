@@ -1,6 +1,7 @@
 package 排序;
 
 import java.util.Arrays;
+import java.util.Random;
 
 public class MergeSort {
     public static void main(String[] args) {
@@ -8,6 +9,9 @@ public class MergeSort {
         System.out.println(Arrays.toString(arr));
         mergesort(arr, 0, arr.length - 1);
         System.out.println(Arrays.toString(arr));
+        Random random = new Random();
+        int i = random.nextInt(5);
+        System.out.println(i);
     }
 
     public static void mergesort(int[] arr, int low, int high) {
@@ -17,6 +21,7 @@ public class MergeSort {
             mergesort(arr, middle + 1, high);
             merge(arr, low, middle, high);
         }
+
     }
 
     public static void merge(int[] arr, int low, int middle, int high) {
@@ -31,25 +36,26 @@ public class MergeSort {
             //第一个数组的数据更小
             if (arr[i] <= arr[j]) {
                 //把小的数据放入临时数组中
-                temp[index] = arr[i++];
+                temp[index++] = arr[i++];
             } else {
-                temp[index] = arr[j++];
+                temp[index++] = arr[j++];
             }
-            index++;
         }
         //处理多余的数据
         while (j <= high) {
-            temp[index] = arr[j++];
-            index++;
+            temp[index++] = arr[j++];
         }
         while (i <= middle) {
-            temp[index] = arr[i++];
-            index++;
+            temp[index++] = arr[i++];
         }
         //把临时数组中的数据重新存入原数组
 		if (temp.length >= 0) {
 			System.arraycopy(temp, 0, arr, low, temp.length);
 		}
+//          index = 0;
+//        while(left <= right){
+//            arr[left++] = temp[t++];
+//        }
     }
 
 }
