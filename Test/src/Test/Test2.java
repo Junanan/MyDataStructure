@@ -1,9 +1,6 @@
 package Test;
 
-import sun.security.jca.GetInstance;
-
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
 
 public class Test2 {
     public static class ListNode {
@@ -89,18 +86,7 @@ public class Test2 {
 //        next6.next = next7;
         next7.next = next8;
         Test2 test2 = new Test2();
-        ListNode cur = head;
-        int a = 2;
-        test2.te3(a);
-        String b = "b";
-        StringBuilder b1 = new StringBuilder();
-        b1.append('b');
-        test2.te(b);
-        test2.te2(b1);
-        System.out.println(b);
-        System.out.println(b1.toString());
-        List list = new LinkedList<>();
-        list.size();
+        test2.minWindow("a","a");
     }
 
     private void te(String a) {
@@ -127,189 +113,154 @@ public class Test2 {
 //            }
 //        }
 //    }
-    public int search(int[] nums, int target) {
+    public int[] maxSlidingWindow(int[] nums, int k) {
+        int[] res = new int[nums.length - k + 1];
+        Deque<Integer> queue = new LinkedList<>();
+        for (int i = 1 - k, j = 0; j < nums.length; i++, j++) {
+            while (!queue.isEmpty() && queue.peekLast() < nums[j]) {
+                queue.pollLast();
+            }
+            queue.add(nums[j]);
+            if (i > 0 && nums[i - 1] == queue.peek()) {
+                queue.poll();
+            }
+            if (i >= 0) {
+                res[i] = queue.peek();
+            }
+        }
+        return res;
+    }
+
+    public int[] findMedianSortedArrays(int[] nums, int target) {
+        if (nums == null || nums.length == 0) return new int[]{-1, -1};
         int i = 0;
         int j = nums.length - 1;
         while (i <= j) {
             int mid = i + (j - i) / 2;
-            if (nums[mid] == target) return mid;
-            //当nums[mid]>=nums[i] 表示前半部分有序，可以在此处判断缩小范围
-            if (nums[i] < nums[mid]) {
-                if (nums[i] <= target && target < nums[mid]) {
-                    j = mid - 1;
-                } else {
-                    i = mid + 1;
-                }
-                //要么后半部分有序
+            if (nums[mid] == target) {
+                j = mid - 1;
+            } else if (nums[mid] < target) {
+                i = mid + 1;
             } else {
-                if (target > nums[mid] && target <= nums[j]) {
-                    i = mid + 1;
-                } else {
-                    j = mid - 1;
-                }
+                j = mid - 1;
             }
         }
-        return -1;
-    }
-
-    int res = Integer.MIN_VALUE;
-
-    public int maxPathSum(TreeNode root) {
-        if (root == null) return 0;
-        MaxValue(root);
-        return res;
-    }
-
-    private int MaxValue(TreeNode root) {
-        if (root == null) return 0;
-        int leftMax = MaxValue(root.left);
-        int rightMax = MaxValue(root.right);
-        if (root.left != null) {
-            leftMax += root.left.val;
-        } else {
-            leftMax = 0;
-        }
-        if (root.right != null) {
-            rightMax += root.right.val;
-        } else {
-            rightMax = 0;
-        }
-        res = Math.max(res, root.val + leftMax + rightMax);
-        //不能返回负效应
-        return Math.max(root.val + Math.max(leftMax, rightMax), 0);
-    }
-
-    private int maxPath(TreeNode root) {
-        if (root == null) return 0;
-        int leftMax;
-        int rightMax;
-        if (root.left != null && root.left.val == root.val) {
-            leftMax = maxPath(root.left);
-        } else {
-            leftMax = 0;
-        }
-        if (root.right != null && root.right.val == root.val) {
-            rightMax = maxPath(root.right);
-        } else {
-            rightMax = 0;
-        }
-        res = Math.max(res, leftMax + rightMax);
-        return Math.max(leftMax, rightMax) + 1;
-    }
-
-    private TreeNode build(int[] preorder, int[] inorder, int p_start, int p_end, int i_start, int i_end) {
-        if (p_start == p_end) return null;
-        int val = preorder[p_start];
-        TreeNode root = new TreeNode(val);
-        int index = 0;
-        for (int i = i_start; i < i_end; i++) {
-            if (inorder[i] == val) {
-                index = i;
-                break;
+        int left = j;
+        i = 0;
+        j = nums.length - 1;
+        while (i <= j) {
+            int mid = i + (j - i) / 2;
+            if (nums[mid] == target) {
+                i = mid + 1;
+            } else if (nums[mid] < target) {
+                i = mid + 1;
+            } else {
+                j = mid - 1;
             }
         }
-        root.left = build(preorder, inorder, p_start + 1, p_start + 1 + index - i_start, i_start, index);
-        root.right = build(preorder, inorder, p_start + 1 + index - i_start, p_end, index + 1, i_end);
-        return root;
-    }
-
-    List<List<Integer>> resList;
-
-    public List<List<Integer>> pathSum(TreeNode root, int sum) {
-        if (root == null) {
-            return resList;
+        int right = j;
+        if (left < 0) {
+            left = -1;
         }
-        List<Integer> list = new LinkedList<>();
-        recurs(root, sum, list);
-        return resList;
-    }
-
-    private void recurs(TreeNode root, int sum, List<Integer> list) {
-        if (root == null) {
-            return;
+        if (right >= nums.length) {
+            right = -1;
         }
-        sum -= root.val;
-        list.add(root.val);
-        if (sum == 0 && root.left == null && root.right == null) {
-            resList.add(new LinkedList<>(list));
-            return;
+        return new int[]{left, right};
+    }
+
+    public int compareVersion(String version1, String version2) {
+        String[] strArr1 = version1.split("\\.");
+        String[] strArr2 = version2.split("\\.");
+        int charValue1 = 0;
+        int charValue2 = 0;
+        int m = strArr1.length;
+        int n = strArr2.length;
+        int i = 0;
+        int len = m > n ? m : n;
+        while (i < len) {
+            if (i < m) {
+                charValue1 = Integer.valueOf(strArr1[i]);
+            } else {
+                charValue1 = 0;
+            }
+            if (i < n) {
+                charValue2 = Integer.valueOf(strArr2[i]);
+            } else {
+                charValue2 = 0;
+            }
+            i++;
+            if (charValue1 < charValue2) {
+                return -1;
+            } else if (charValue1 > charValue2) {
+                return 1;
+            }
         }
-        recurs(root.left, sum, list);
-        recurs(root.right, sum, list);
-        list.remove(list.size() - 1);
+        return 0;
     }
 
-    public ListNode mergeKLists(ListNode[] lists) {
-        return mergeList(lists, 0, lists.length - 1);
-    }
-
-    private ListNode mergeList(ListNode[] lists, int i, int j) {
+    public int findMin(int[] nums) {
+        int i = 0;
+        int j = nums.length - 1;
+        //两边夹 缩小区间  结束后 i == j 唯一值
         while (i < j) {
             int mid = i + (j - i) / 2;
-            ListNode listNode = mergeList(lists, i, mid);
-            ListNode listNode1 = mergeList(lists, mid + 1, j);
-            return merge(listNode, listNode1);
-        }
-        return lists[i];
-    }
-
-    private ListNode merge(ListNode listNode, ListNode listNode1) {
-        if (listNode == null) return listNode1;
-        if (listNode1 == null) return listNode;
-        if (listNode.val < listNode1.val) {
-            listNode.next = merge(listNode.next, listNode1);
-            return listNode;
-        } else {
-            listNode1.next = merge(listNode, listNode1.next);
-            return listNode1;
-        }
-    }
-
-    public void reorderList(ListNode head) {
-        if (head == null || head.next == null) {
-            return;
-        }
-        ListNode cur = head;
-        ListNode pre = head;
-        ListNode mid;
-        while (pre.next != null && pre.next.next != null) {
-            cur = cur.next;
-            pre = pre.next.next;
-        }
-        mid = cur.next;
-        cur.next = null;
-        cur = head;
-        rervse(mid);
-        merge(cur, head);
-    }
-
-    private ListNode rervse(ListNode mid) {
-        if (mid == null) return null;
-        ListNode temp = rervse(mid.next);
-        ListNode du = temp;
-        while (du != null) {
-            du = du.next;
-        }
-        du.next = mid;
-        mid.next = null;
-        return temp;
-    }
-
-    public int majorityElement(int[] nums) {
-        int flag = nums[0];
-        int count = 1;
-        for (int i = 1; i < nums.length; i++) {
-            if (nums[i] == flag) {
-                count++;
-            } else {
-                count--;
-            }
-            if (count == 0) {
-                flag = nums[i];
-                count = 1;
+            if (nums[mid] > nums[j]) {  /*中值 > 右值，最小值在右半边，收缩左边界 不包括mid */
+                i = mid + 1;
+            } else { //中间值小于右边界 右边区域 肯定为单调递增 收缩右边界 包括mid
+                j = mid;
             }
         }
-        return flag;
+        return nums[i];
+    }
+
+    public int searchInsert(int[] nums, int target) {
+        //目的 寻找第一个大于 等于target 的数
+        int i = 0;
+        int j = nums.length - 1;
+        while (i < j) {
+            int mid = i + (j - i) / 2;
+            if (nums[mid] < target) {
+                i = mid + 1;
+            }else {
+                j = mid ;
+            }
+        }
+        return i;
+    }
+    public String minWindow(String s, String t) {
+        HashMap<Character,Integer> need = new HashMap<>();
+        HashMap<Character,Integer> window = new HashMap<>();
+        for (char c : t.toCharArray()) {
+            need.put(c,need.getOrDefault(c,0) + 1);
+        }
+        int left = 0;
+        int right = 0;
+        int valid = 0;
+        int len = Integer.MAX_VALUE;
+        int start = 0;
+        while (right < s.length()) {
+            char c = s.charAt(right);
+            if (need.containsKey(c)) {
+
+            }
+            //收缩左边界
+            while (valid == need.size()) {
+                char c2 = s.charAt(left);
+                if (right - left < len) {
+                     len = right - left + 1;
+                     start = left;
+                }
+                if (need.containsKey(c2)) {
+                    if (window.get(c2).equals(need.get(c2))) {
+                        valid--;
+                    }
+                    window.put(c2, window.get(c2) - 1);
+                }
+                left++;
+            }
+            right++;
+        }
+        return len == Integer.MAX_VALUE ? "" : s.substring(start,start + len);
     }
 }
 

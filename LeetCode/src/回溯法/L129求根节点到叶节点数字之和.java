@@ -11,31 +11,23 @@ public class L129求根节点到叶节点数字之和 {
         }
     }
     class Solution {
-        StringBuilder stringBuilder ;
-        int res;
+        int res = 0;
         public int sumNumbers(TreeNode root) {
-            if(root == null) {
-                return 0;
-            }
-            stringBuilder = new StringBuilder();
-            res = 0;
-            backTracking(root);
+            if (root == null) return 0;
+            StringBuilder sb = new StringBuilder();
+            backing(root,sb);
             return res;
         }
-        private void backTracking(TreeNode root){
-            if(root == null) return ;
-            stringBuilder.append(String.valueOf(root.val));
-            if(root.left == null && root.right == null) {
-                int a = Integer.parseInt(stringBuilder.toString());
-                res += a;
+
+        private void backing(TreeNode root, StringBuilder sb) {
+            if (root == null) return ;
+            sb.append(String.valueOf(root.val));
+            if (root.left == null && root.right == null) {
+                res += Integer.valueOf(sb.toString());
             }
-            backTracking(root.left);
-
-            backTracking(root.right);
-
-            stringBuilder.deleteCharAt(stringBuilder.length()-1);
-
-
+            backing(root.left,sb);
+            backing(root.right,sb);
+            sb.deleteCharAt(sb.length() - 1);
         }
 
     }
