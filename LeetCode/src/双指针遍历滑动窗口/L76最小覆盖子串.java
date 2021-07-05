@@ -22,19 +22,22 @@ public class L76最小覆盖子串 {
                     valid++;
                 }
             }
-            //收缩左边界
+            //判断左边是否要收缩
             while (valid == need.size()) {
                 char c2 = s.charAt(left);
+                //更新答案
                 if (right - left < len) {
                     len = right - left + 1;
                     start = left;
                 }
                 if (need.containsKey(c2)) {
                     if (window.get(c2).equals(need.get(c2))) {
+                        //收缩
                         valid--;
                     }
                     window.put(c2, window.get(c2) - 1);
                 }
+                //剔除无用元素
                 left++;
             }
             right ++;
