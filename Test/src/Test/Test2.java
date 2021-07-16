@@ -1,6 +1,8 @@
 package Test;
 
 import java.util.*;
+import java.util.concurrent.ForkJoinPool;
+import java.util.regex.Pattern;
 
 public class Test2 {
     public static class ListNode {
@@ -88,6 +90,67 @@ public class Test2 {
         Test2 test2 = new Test2();
     }
 
+    class MyStack {
+        Queue<Integer> queue1;
+        Queue<Integer> queue2;
+
+        /**
+         * Initialize your data structure here.
+         */
+        public MyStack() {
+            queue1 = new LinkedList<>();
+            queue2 = new LinkedList<>();
+        }
+
+        /**
+         * Push element x onto stack.
+         */
+        public void push(int x) {
+            queue1.offer(x);
+        }
+
+        /**
+         * Removes the element on top of the stack and returns that element.
+         */
+        public int pop() {
+            if (queue2.isEmpty()) {
+                while (!queue1.isEmpty()) {
+                    queue2.offer(queue1.poll());
+                }
+            }
+            if (queue2.isEmpty()) {
+                return -1;
+            }
+            return queue2.poll();
+        }
+
+        /**
+         * Get the top element.
+         */
+        public int top() {
+            if (queue2.isEmpty()) {
+                while (!queue1.isEmpty()) {
+                    queue2.offer(queue1.poll());
+                }
+            }
+            if (queue2.isEmpty()) {
+                return -1;
+            }
+            return queue2.peek();
+        }
+
+        /**
+         * Returns whether the stack is empty.
+         */
+        public boolean empty() {
+            if (queue2.isEmpty()) {
+                while (!queue1.isEmpty()) {
+                    queue2.offer(queue1.poll());
+                }
+            }
+            return queue2.isEmpty();
+        }
+    }
 }
 
 

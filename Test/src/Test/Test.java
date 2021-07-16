@@ -91,4 +91,32 @@ public class Test {
         }
         return res;
     }
+    class Node {
+        int val;
+        Node next;
+        Node random;
+
+        public Node(int val) {
+            this.val = val;
+            this.next = null;
+            this.random = null;
+        }
+    }
+    public Node copyRandomList(Node head) {
+        if(head == null) return null;
+        Node cur = head;
+        Map<Node,Node> map = new HashMap<>();
+        while(cur != null) {
+            map.put(cur,new Node(cur.val));
+            cur = cur.next;
+        }
+        cur = head;
+        Node pre = cur;
+        while (pre != null) {
+            pre.next = map.get(pre).next;
+            pre.random = map.get(pre).random;
+            pre = pre.next;
+        }
+        return cur;
+    }
 }

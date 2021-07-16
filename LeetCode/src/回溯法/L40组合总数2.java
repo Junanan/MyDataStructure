@@ -1,36 +1,36 @@
-package å›æº¯æ³•;
+package »ØËİ·¨;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-//ç»™å®šä¸€ä¸ªæ•°ç»„Â candidatesÂ å’Œä¸€ä¸ªç›®æ ‡æ•°Â targetÂ ï¼Œæ‰¾å‡ºÂ candidatesÂ ä¸­æ‰€æœ‰å¯ä»¥ä½¿æ•°å­—å’Œä¸ºÂ targetÂ çš„ç»„åˆã€‚
+//¸ø¶¨Ò»¸öÊı×é?candidates?ºÍÒ»¸öÄ¿±êÊı?target?£¬ÕÒ³ö?candidates?ÖĞËùÓĞ¿ÉÒÔÊ¹Êı×ÖºÍÎª?target?µÄ×éºÏ¡£
 //
-//candidatesÂ ä¸­çš„æ¯ä¸ªæ•°å­—åœ¨æ¯ä¸ªç»„åˆä¸­åªèƒ½ä½¿ç”¨ä¸€æ¬¡ã€‚
+//candidates?ÖĞµÄÃ¿¸öÊı×ÖÔÚÃ¿¸ö×éºÏÖĞÖ»ÄÜÊ¹ÓÃÒ»´Î¡£
 //
-//è¯´æ˜ï¼š
+//ËµÃ÷£º
 //
-//æ‰€æœ‰æ•°å­—ï¼ˆåŒ…æ‹¬ç›®æ ‡æ•°ï¼‰éƒ½æ˜¯æ­£æ•´æ•°ã€‚
-//è§£é›†ä¸èƒ½åŒ…å«é‡å¤çš„ç»„åˆã€‚Â 
-//ç¤ºä¾‹Â 1:
+//ËùÓĞÊı×Ö£¨°üÀ¨Ä¿±êÊı£©¶¼ÊÇÕıÕûÊı¡£
+//½â¼¯²»ÄÜ°üº¬ÖØ¸´µÄ×éºÏ¡£?
+//Ê¾Àı?1:
 //
-//è¾“å…¥: candidates =Â [10,1,2,7,6,1,5], target =Â 8,
-//æ‰€æ±‚è§£é›†ä¸º:
+//ÊäÈë: candidates =?[10,1,2,7,6,1,5], target =?8,
+//ËùÇó½â¼¯Îª:
 //[
 //  [1, 7],
 //  [1, 2, 5],
 //  [2, 6],
 //  [1, 1, 6]
 //]
-//ç¤ºä¾‹Â 2:
+//Ê¾Àı?2:
 //
-//è¾“å…¥: candidates =Â [2,5,2,1,2], target =Â 5,
-//æ‰€æ±‚è§£é›†ä¸º:
+//ÊäÈë: candidates =?[2,5,2,1,2], target =?5,
+//ËùÇó½â¼¯Îª:
 //[
-//Â  [1,2,2],
-//Â  [5]
+//? [1,2,2],
+//? [5]
 //]
-public class L40ç»„åˆæ€»æ•°2 {
+public class L40×éºÏ×ÜÊı2 {
 	static List<List<Integer>> res;
 
 	public static List<List<Integer>> combinationSum2(int[] candidates, int target) {
@@ -49,7 +49,7 @@ public class L40ç»„åˆæ€»æ•°2 {
 		if(listsum(list)>target) return;
 		for (int i = j; i < candidates.length; i++) {
 			list.add(candidates[i]);
-			backtrack(candidates, list, target, i+1);  /// ä¸èƒ½é‡å¤ä½¿ç”¨æ•°å­— ä»ä¸‹ä¸€ä¸ªæ•°å­—å¼€å§‹é€‰æ‹©
+			backtrack(candidates, list, target, i+1);  /// ²»ÄÜÖØ¸´Ê¹ÓÃÊı×Ö ´ÓÏÂÒ»¸öÊı×Ö¿ªÊ¼Ñ¡Ôñ
 			list.remove(list.size() - 1);
 		}
 	}
