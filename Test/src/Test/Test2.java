@@ -1,8 +1,16 @@
 package Test;
 
-import java.util.*;
-import java.util.concurrent.ForkJoinPool;
-import java.util.regex.Pattern;
+import javax.sound.midi.spi.SoundbankReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.PriorityQueue;
+import java.util.Queue;
+import java.util.Stack;
 
 public class Test2 {
     public static class ListNode {
@@ -66,92 +74,72 @@ public class Test2 {
         TreeNode root5 = new TreeNode(5);
         TreeNode root6 = new TreeNode(6);
         TreeNode root7 = new TreeNode(7);
-        root.left = root2;
-        root.right = root3;
-        root2.left = root4;
-        root2.right = root5;
-        root3.left = root6;
-        root3.right = root7;
+//        root.left = root2;
+//        root.right = root3;
+//        root2.left = root4;
+//        root2.right = root5;
+//        root3.left = root6;
+//        root3.right = root7;
+        root3.left = root;
+        root3.right = root4;
+        root.right = root2;
         ListNode head = new ListNode(1);
         ListNode next2 = new ListNode(2);
         ListNode next3 = new ListNode(3);
         ListNode next4 = new ListNode(4);
         ListNode next5 = new ListNode(5);
-//        ListNode next6 = new ListNode(6);
+        ListNode next6 = new ListNode(6);
         ListNode next7 = new ListNode(7);
         ListNode next8 = new ListNode(8);
         head.next = next2;
         next2.next = next3;
         next3.next = next4;
         next4.next = next5;
-//        next5.next = next6;
-//        next6.next = next7;
+        next5.next = next6;
+        next6.next = next7;
         next7.next = next8;
         Test2 test2 = new Test2();
+        System.out.println();
+        StringBuilder resString = new StringBuilder();
+        String str = new String("zxc");
+        test2.change(str);
+        System.out.println(str);
+        String a = "111";
+        a = "222";
+        System.out.println(a);
     }
 
-    class MyStack {
-        Queue<Integer> queue1;
-        Queue<Integer> queue2;
 
-        /**
-         * Initialize your data structure here.
-         */
-        public MyStack() {
-            queue1 = new LinkedList<>();
-            queue2 = new LinkedList<>();
-        }
-
-        /**
-         * Push element x onto stack.
-         */
-        public void push(int x) {
-            queue1.offer(x);
-        }
-
-        /**
-         * Removes the element on top of the stack and returns that element.
-         */
-        public int pop() {
-            if (queue2.isEmpty()) {
-                while (!queue1.isEmpty()) {
-                    queue2.offer(queue1.poll());
-                }
-            }
-            if (queue2.isEmpty()) {
-                return -1;
-            }
-            return queue2.poll();
-        }
-
-        /**
-         * Get the top element.
-         */
-        public int top() {
-            if (queue2.isEmpty()) {
-                while (!queue1.isEmpty()) {
-                    queue2.offer(queue1.poll());
-                }
-            }
-            if (queue2.isEmpty()) {
-                return -1;
-            }
-            return queue2.peek();
-        }
-
-        /**
-         * Returns whether the stack is empty.
-         */
-        public boolean empty() {
-            if (queue2.isEmpty()) {
-                while (!queue1.isEmpty()) {
-                    queue2.offer(queue1.poll());
-                }
-            }
-            return queue2.isEmpty();
-        }
+    public void change(String str) {
+        str = "asv";
     }
+
+
+    public double myPow(double x, int n) {
+        if (n == Integer.MIN_VALUE) {
+            return (x == -1 || x == 1) ? 1 : 0;
+        }
+        if (n == 0) {
+            return 1;
+        }
+        boolean flag = true;
+        if (n < 0) {
+            n = -n;
+            flag = false;
+        }
+        double res = 0;
+        if ((n & 1) != 1) {
+            res = myPow(x * x, n / 2);
+        } else {
+            res = x * myPow(x * x, (n - 1) / 2);
+        }
+        return flag ? res : 1 / res;
+    }
+
 }
+
+
+
 
 
 

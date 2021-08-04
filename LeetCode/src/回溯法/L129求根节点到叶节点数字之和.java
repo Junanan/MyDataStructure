@@ -27,6 +27,7 @@ public class L129求根节点到叶节点数字之和 {
             }
             backing(root.left,sb);
             backing(root.right,sb);
+            //StringBuilder 是引用传递 只要在递归至叶子节点回溯就行了
             sb.deleteCharAt(sb.length() - 1);
         }
 
