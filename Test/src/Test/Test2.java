@@ -1,5 +1,7 @@
 package Test;
 
+import com.sun.javafx.image.IntPixelGetter;
+
 import javax.sound.midi.spi.SoundbankReader;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -103,6 +105,7 @@ public class Test2 {
         StringBuilder resString = new StringBuilder();
         String str = new String("zxc");
         test2.change(str);
+        System.out.println(test2.firstMissingPositive(new int[]{3, 4, -1, 1}));
         System.out.println(str);
         String a = "111";
         a = "222";
@@ -115,28 +118,52 @@ public class Test2 {
     }
 
 
-    public double myPow(double x, int n) {
-        if (n == Integer.MIN_VALUE) {
-            return (x == -1 || x == 1) ? 1 : 0;
+    public int firstMissingPositive(int[] nums) {
+        List<Integer> res = new LinkedList<>();
+        for (int i = 0; i < nums.length; i++) {
+            while ( nums[i] <= nums.length && nums[nums[i] - 1] != nums[i]) {
+                int temp = nums[nums[i] - 1];
+                nums[nums[i] - 1] = nums[i];
+                nums[i] = temp;
+            }
         }
-        if (n == 0) {
-            return 1;
+        for (int i = 0; i < nums.length; i++) {
+            if (i + 1 != nums[i]) {
+                return i + 1;
+            }
         }
-        boolean flag = true;
-        if (n < 0) {
-            n = -n;
-            flag = false;
+        return nums.length + 1;
+    }
+    public List<Integer> findDisappearedNumbers(int[] nums) {
+        List<Integer> res = new LinkedList<>();
+        for (int i = 0; i < nums.length; i++) {
+            while (nums[i] <= nums.length && nums[nums[i] - 1] != nums[i]) {
+                int temp = nums[nums[i] - 1];
+                nums[nums[i] - 1] = nums[i];
+                nums[i] = temp;
+            }
         }
-        double res = 0;
-        if ((n & 1) != 1) {
-            res = myPow(x * x, n / 2);
-        } else {
-            res = x * myPow(x * x, (n - 1) / 2);
+        for (int i = 0; i < nums.length; i++) {
+            if (i + 1 != nums[i]) {
+                res.add(i + 1);
+            }
         }
-        return flag ? res : 1 / res;
+        return res;
     }
 
+    public List<Integer> findDuplicates(int[] nums) {
+        List<Integer> list = new LinkedList<>();
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == i + 1) {
+                continue;
+            }
+
+
+        }
+        return list;
+    }
 }
+
 
 
 
