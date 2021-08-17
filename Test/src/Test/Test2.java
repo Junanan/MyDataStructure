@@ -3,9 +3,11 @@ package Test;
 import com.sun.javafx.image.IntPixelGetter;
 
 import javax.sound.midi.spi.SoundbankReader;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Deque;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -13,6 +15,9 @@ import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Stack;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class Test2 {
     public static class ListNode {
@@ -101,15 +106,13 @@ public class Test2 {
         next6.next = next7;
         next7.next = next8;
         Test2 test2 = new Test2();
-        System.out.println();
         StringBuilder resString = new StringBuilder();
         String str = new String("zxc");
         test2.change(str);
-        System.out.println(test2.firstMissingPositive(new int[]{3, 4, -1, 1}));
-        System.out.println(str);
-        String a = "111";
+        String a = "123";
         a = "222";
-        System.out.println(a);
+//        test2.print(new int[]{1,2,3,4,5,6});
+        System.out.println(2 ^ 8);
     }
 
 
@@ -117,51 +120,74 @@ public class Test2 {
         str = "asv";
     }
 
+    // 多线程交替打印数组
+    public void print(int[] nums) {
+        Lock lock = new ReentrantLock();
+        Condition condition1 = lock.newCondition();
+        Condition condition2 = lock.newCondition();
 
-    public int firstMissingPositive(int[] nums) {
-        List<Integer> res = new LinkedList<>();
-        for (int i = 0; i < nums.length; i++) {
-            while ( nums[i] <= nums.length && nums[nums[i] - 1] != nums[i]) {
-                int temp = nums[nums[i] - 1];
-                nums[nums[i] - 1] = nums[i];
-                nums[i] = temp;
+        new Thread(() -> {
+            lock.lock();
+            try {
+                for (int num : nums) {
+                    if ((num & 1) == 1) {
+                        System.out.println(Thread.currentThread().getName() + num);
+                    }
+                    condition2.signal();//叫醒其他线程，这里就是t2
+                    condition1.await();//让自己阻塞，让出锁
+                }
+                condition2.signal();//必须要有，因为两个线程的try里面的最后一步是阻塞，如果线程执行完了还在阻塞肯定不对，必须要唤醒，才能正确结束程序
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } finally {
+                lock.unlock();
             }
-        }
-        for (int i = 0; i < nums.length; i++) {
-            if (i + 1 != nums[i]) {
-                return i + 1;
+        }, "A").start();
+        new Thread(() -> {
+            lock.lock();
+            try {
+                for (int num : nums) {
+                    if ((num & 1) != 1) {
+                        System.out.println(Thread.currentThread().getName() + num);
+                    }
+                    condition1.signal();
+                    condition2.await();
+                }
+                condition1.signal();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } finally {
+                lock.unlock();
             }
-        }
-        return nums.length + 1;
+        }, "B").start();
     }
-    public List<Integer> findDisappearedNumbers(int[] nums) {
-        List<Integer> res = new LinkedList<>();
-        for (int i = 0; i < nums.length; i++) {
-            while (nums[i] <= nums.length && nums[nums[i] - 1] != nums[i]) {
-                int temp = nums[nums[i] - 1];
-                nums[nums[i] - 1] = nums[i];
-                nums[i] = temp;
-            }
-        }
-        for (int i = 0; i < nums.length; i++) {
-            if (i + 1 != nums[i]) {
-                res.add(i + 1);
-            }
-        }
-        return res;
-    }
 
-    public List<Integer> findDuplicates(int[] nums) {
-        List<Integer> list = new LinkedList<>();
-        for (int i = 0; i < nums.length; i++) {
-            if (nums[i] == i + 1) {
-                continue;
-            }
-
-
-        }
-        return list;
-    }
+//    public String decodeString(String s) {
+//        Stack<Integer> stack_num = new Stack<>();
+//        Stack<String> stack_str = new Stack<>();
+//        int num = 0;
+//        String str = "";
+//        StringBuilder res = new StringBuilder();
+//        StringBuilder temp = new StringBuilder();
+//        for (int i = 0; i < s.length(); i++) {
+//            char c = s.charAt(i);
+//            if (s.charAt(i) == '[') {
+//                stack_num.add(num);
+//                num = 0;
+//                stack_str.add(temp.toString());
+//                temp = new StringBuilder();
+//
+//            }else if (s.charAt(i) ==']') {
+//                for (int j = 0; j < stack_num.pop(); j++) {
+//
+//                }
+//            }else if ('a' < s.charAt(i) && s.charAt(i) < 'z') {
+//                temp.append(c);
+//            }else {
+//                num = num * 10 + Integer.parseInt(c);
+//            }
+//        }
+//    }
 }
 
 

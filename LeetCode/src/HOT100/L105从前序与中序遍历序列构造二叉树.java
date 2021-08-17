@@ -1,21 +1,21 @@
 package HOT100;
-//æ ¹æ®ä¸€æ£µæ ‘çš„å‰åºéå†ä¸ä¸­åºéå†æ„é€ äºŒå‰æ ‘ã€‚
+//¸ù¾İÒ»¿ÃÊ÷µÄÇ°Ğò±éÀúÓëÖĞĞò±éÀú¹¹Ôì¶ş²æÊ÷¡£
 //
-//æ³¨æ„:
-//ä½ å¯ä»¥å‡è®¾æ ‘ä¸­æ²¡æœ‰é‡å¤çš„å…ƒç´ ã€‚
+//×¢Òâ:
+//Äã¿ÉÒÔ¼ÙÉèÊ÷ÖĞÃ»ÓĞÖØ¸´µÄÔªËØ¡£
 //
-//ä¾‹å¦‚ï¼Œç»™å‡º
+//ÀıÈç£¬¸ø³ö
 //
-//å‰åºéå† preorder =Â [3,9,20,15,7]
-//ä¸­åºéå† inorder = [9,3,15,20,7]
-//è¿”å›å¦‚ä¸‹çš„äºŒå‰æ ‘ï¼š
+//Ç°Ğò±éÀú preorder =?[3,9,20,15,7]
+//ÖĞĞò±éÀú inorder = [9,3,15,20,7]
+//·µ»ØÈçÏÂµÄ¶ş²æÊ÷£º
 //
 //    3
 //   / \
 //  9  20
 //    /  \
 //   15   7
-public class L105ä»å‰åºä¸ä¸­åºéå†åºåˆ—æ„é€ äºŒå‰æ ‘ {
+public class L105´ÓÇ°ĞòÓëÖĞĞò±éÀúĞòÁĞ¹¹Ôì¶ş²æÊ÷ {
 	public class TreeNode {
 		int val;
 		TreeNode left;
@@ -31,13 +31,13 @@ public class L105ä»å‰åºä¸ä¸­åºéå†åºåˆ—æ„é€ äºŒå‰æ ‘ {
 	}
 
 	private TreeNode buildTreeHelper(int[] preorder, int p_start, int p_end, int[] inorder, int i_start, int i_end) {
-	    // preorder ä¸ºç©ºï¼Œç›´æ¥è¿”å› null
+	    // preorder Îª¿Õ£¬Ö±½Ó·µ»Ø null
 	    if (p_start == p_end) {
 	        return null;
 	    }
 	    int root_val = preorder[p_start];
 	    TreeNode root = new TreeNode(root_val);
-	    //åœ¨ä¸­åºéå†ä¸­æ‰¾åˆ°æ ¹èŠ‚ç‚¹çš„ä½ç½®
+	    //ÔÚÖĞĞò±éÀúÖĞÕÒµ½¸ù½ÚµãµÄÎ»ÖÃ
 	    int i_root_index = 0;
 	    for (int i = i_start; i < i_end; i++) {
 	        if (root_val == inorder[i]) {
@@ -46,9 +46,9 @@ public class L105ä»å‰åºä¸ä¸­åºéå†åºåˆ—æ„é€ äºŒå‰æ ‘ {
 	        }
 	    }
 	    int leftNum = i_root_index - i_start;
-	    //é€’å½’çš„æ„é€ å·¦å­æ ‘
+	    //µİ¹éµÄ¹¹Ôì×ó×ÓÊ÷
 	    root.left = buildTreeHelper(preorder, p_start + 1, p_start + leftNum + 1, inorder, i_start, i_root_index);
-	    //é€’å½’çš„æ„é€ å³å­æ ‘
+	    //µİ¹éµÄ¹¹ÔìÓÒ×ÓÊ÷
 	    root.right = buildTreeHelper(preorder, p_start + leftNum + 1, p_end, inorder, i_root_index + 1, i_end);
 	    return root;
 	}

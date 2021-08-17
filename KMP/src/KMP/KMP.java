@@ -31,8 +31,8 @@ public class KMP {
 		int i = 0, j = -1;
 		while (i < str.length()) {
 			if (j == -1 || str.charAt(i) == str.charAt(j)) {
-				++i;
-				++j;
+				i++;
+				j++;
 				next[i] = j;
 			} else
 				j = next[j];

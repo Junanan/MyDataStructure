@@ -1,16 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="Encoding">
+  <component name="Encoding" native2AsciiForPropertiesFiles="true" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$/KMP/src/KMP/KMP.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/LeetCode/src/BFS与DFS/L130被围绕的区域.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/LeetCode/src/BFS与DFS/L207课程表.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/LeetCode/src/BFS与DFS/L695岛屿的最大面积.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/LeetCode/src/Daily/L129求根到叶子节点数字之和.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/LeetCode/src/Daily/L134加油站.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/LeetCode/src/Daily/L1356根据数字二进制下1的数目排序.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/LeetCode/src/Daily/L973最接近原点的K个点.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/LeetCode/src/HOT100/L105从前序与中序遍历序列构造二叉树.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/LeetCode/src/动态规划/L01背包问题.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/LeetCode/src/动态规划/L518零钱兑换II.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/LeetCode/src/动态规划/L63.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/LeetCode/src/双指针遍历滑动窗口/滑动窗口模板.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/LeetCode/src/回溯法/L17电话号码的字母组合.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/LeetCode/src/回溯法/L39组合总和.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/LeetCode/src/回溯法/L40组合总数2.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/LeetCode/src/回溯法/回溯法.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/Test/src/线程/线程.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/二分法查找/src/二分法查找/二分法.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/排序/src/排序/BucketSort.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/排序/src/排序/HeapSort.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/排序/src/排序/MergeSort.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/排序/src/排序/QuickSort.java" charset="GBK" />
     <file url="PROJECT" charset="GBK" />
   </component>
 </project>
